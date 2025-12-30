@@ -1,4 +1,4 @@
-# 📄 Document Change Analyzer
+# 📄 Semantic Document Comparison API
 
 A backend service that compares two versions of a document and detects whether the document has changed in a meaningful way.
 
