@@ -1,86 +1,118 @@
-📄 Document Change Analyzer
+# 📄 Document Change Analyzer
 
 A backend service that compares two versions of a document and detects whether the document has changed in a meaningful way.
 
-This project is useful for comparing things like:
+This project can be used for comparing:
+- Privacy Policies
+- Terms & Conditions
+- Company policies
+- Any versioned text documents
 
-📜 Privacy Policies
-📑 Terms & Conditions
-🏢 Company policies
-📝 Any versioned text documents
+This project focuses on semantic comparison, not simple text matching.
 
-🛠 Tools and Libraries Used
-🐍 Python – main programming language
-🤗 Hugging Face (Sentence Transformers) – to understand text meaning
-🚀 BentoML – to turn the logic into a real API service
+---
 
-🤗 Hugging Face Usage
-Computers do not understand English text directly. They understand numbers. 
-To solve this, this project uses a Hugging Face embedding model:
-Model used: sentence-transformers/all-MiniLM-L6-v2
-This model converts text into numeric vectors (embeddings) that represent the meaning of the text.
+## 🔧 Tools Used
 
-🔢 What Embeddings Do in This Project
-Document Version 1 → converted into numbers
-Document Version 2 → converted into numbers
+- Python
+- Hugging Face Sentence Transformers
+- BentoML
 
-These numeric vectors are then compared using cosine similarity.
-📈 High similarity score → meaning is mostly the same
-📉 Low similarity score → meaning has changed
+---
 
-Based on the similarity score, the project classifies the change as:
-✅ minor or no change
-⚠️ major change
+## 🤗 Hugging Face Integration
 
-🚀 BentoML Usage
-BentoML is used to wrap all the logic into a production-style service.
+Computers do not understand natural language directly.
+They understand numbers.
+
+This project uses a Hugging Face sentence embedding model to convert text into numeric representations.
+
+Model used:
+sentence-transformers/all-MiniLM-L6-v2
+
+Each document is converted into an embedding that represents its meaning.
+
+---
+
+## 🔢 How Embeddings Are Used
+
+- Document version 1 is converted into numbers
+- Document version 2 is converted into numbers
+- Both numeric representations are compared using cosine similarity
+
+If the similarity score is high, the meaning is mostly the same.
+If the similarity score is low, the meaning has changed.
+
+Based on this score, the project classifies changes as:
+- Minor or no change
+- Major change
+
+---
+
+## 🚀 BentoML Service
+
+BentoML is used to package the document comparison logic into a production-ready API service.
+
 With BentoML:
-The core logic is written in a service.py file
-A service class is defined
-An API endpoint (analyze) is exposed
-The service can be started using a single command
-This makes the project usable as an API, not just a script.
+- The logic lives in a service.py file
+- A service class is defined
+- An API endpoint is exposed
+- The service can be started as an HTTP server
 
-⚙️ How the Service Works (High Level)
-1.The service receives two text documents as input
-2.Hugging Face converts both documents into embeddings
-3.The embeddings are compared
-4.A similarity score is calculated
-5.The service returns a JSON response containing:
- *similarity score
- *type of change (major or minor)
+This allows other applications to consume the document comparison logic easily.
 
-📁 Project Files
-📄 service.py
-Main production file
-Loads the Hugging Face model
-Contains BentoML service and API logic
-📓 analysis.ipynb
-Used for experimentation and explanation
-Not required for running the service
-📝 Policy_v1.txt, Policy_v2.txt
-Sample input documents
-📤 output.json
-Example output format
+---
 
-🎯 What This Project Demonstrates
-Using Hugging Face pretrained models in a practical way
-Converting text into embeddings for semantic comparison
-Building a production-style API using BentoML
-Separating experimentation from deployment logic
+## ⚙️ Service Flow
 
-▶️ How to Use This Project
+1. The service receives two document texts
+2. Hugging Face converts both documents into embeddings
+3. The embeddings are compared
+4. A similarity score is calculated
+5. The service returns a structured response indicating the type of change
+
+---
+
+## 📁 Project Structure
+
+- service.py  
+  Main production file containing Hugging Face and BentoML logic
+
+- analysis.ipynb  
+  Notebook used for experimentation and explanation
+
+- Policy_v1.txt and Policy_v2.txt  
+  Sample input documents
+
+- output.json  
+  Example output from the service
+
+---
+
+## 🎯 What This Project Demonstrates
+
+- Practical usage of Hugging Face pretrained models
+- Semantic document comparison using embeddings
+- Building a production-style API with BentoML
+- Clean separation between experimentation and deployment
+
+---
+
+## ▶️ How to Use This Project
 
 This service can be used to compare any two text documents, such as privacy policies or terms and conditions.
-Convert both document versions into plain text format
-Start the BentoML service
-Send both document texts to the analyze API endpoint
-Receive a response containing:
-similarity score
-classification of change (major or minor)
 
-📝 Final Note
+- Prepare two document versions in plain text format
+- Start the BentoML service
+- Send both document texts to the analyze API endpoint
+- Receive a response containing:
+  - similarity score
+  - classification of change (major or minor)
 
-This project focuses on semantic document comparison, not text generation or chatbots.
+---
 
-It demonstrates how Hugging Face models can be integrated into a real backend service using BentoML to solve a practical real-world problem.
+## 📝 Final Notes
+
+This project does not focus on text generation or chatbots.
+It demonstrates how Hugging Face models can be integrated into a backend service using BentoML to solve a real-world document comparison problem.
+
