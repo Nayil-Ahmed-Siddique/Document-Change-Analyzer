@@ -1,0 +1,17 @@
+{
+  "total_major_changes": 3,
+  "changes": [
+    {
+      "section": 2,
+      "summary": "Working Hours\nEmployees are expected to work 8 hours per day, Monday to Friday.\nFlexible working hours are allowed with ..."
+    },
+    {
+      "section": 3,
+      "summary": "Remote Work\nEmployees may work remotely up to 2 days per week.\nRemote work requests must be submitted through the intern..."
+    },
+    {
+      "section": 6,
+      "summary": "Policy Updates\nPolicy changes will be communicated through email and the company dashboard.\nEmployees are responsible fo..."
+    }
+  ]
+}
